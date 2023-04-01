@@ -2,8 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const newBook = new Schema ({
     title: {
-        type: String,
-        unique: true    //no puede haber dos nombres iguales
+        type: String
     },
     author: {
         type: String
