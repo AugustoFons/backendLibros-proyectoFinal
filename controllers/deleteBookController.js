@@ -1,8 +1,8 @@
-const Books = require('../models/books')
+const V2Books = require('../models/books')
 
 module.exports = {
     async delete (req, res) {
-        await Books.findByIdAndDelete(req.params.id);
+        await V2Books.findByIdAndDelete(req.params.id);
         res.json({message: "Borrado con exito"})
     }
 }

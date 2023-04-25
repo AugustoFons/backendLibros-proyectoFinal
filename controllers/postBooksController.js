@@ -1,4 +1,4 @@
-const Books = require('../models/books')
+const V2Books = require('../models/books')
 const {validationResult} = require('express-validator')
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
         try {
             const err = validationResult(req)
             if (err.isEmpty()) {
-                const item = new Books(req.body);
+                const item = new V2Books(req.body);
                 await item.save();
                 res.status(201).json(item)
             } else {

@@ -1,8 +1,8 @@
-const Books = require('../models/books')
+const V2Books = require('../models/books')
 
 module.exports = validarID = async (req, res, next) => {
     try {
-        const item = await Books.findById(req.params.id)
+        const item = await V2Books.findById(req.params.id)
         if (item !== null) {
             next()
         } else {

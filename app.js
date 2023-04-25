@@ -6,6 +6,7 @@ const postBooksRouter = require('./routes/postBooks');
 const getBooksRouter = require('./routes/getBooks');
 const updateBookRouter = require('./routes/updateBook');
 const deleteBookRouter = require('./routes/deleteBook')
+const postCommentRouter = require('./routes/postComments');
 
 const {connect} = require('./db/db');
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/post', postBooksRouter);
+app.use('/postComment', postCommentRouter);
 app.use('/get', getBooksRouter);
 app.use('/update', updateBookRouter);
 app.use('/delete', deleteBookRouter);

@@ -1,4 +1,4 @@
-const Books = require('../models/books')
+const V2Books = require('../models/books')
 const {validationResult} = require('express-validator')
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
         try {
             const err = validationResult(req);
             if (err.isEmpty()) {
-                let updateBook = await Books.findByIdAndUpdate(req.params.id, req.body);
+                let updateBook = await V2Books.findByIdAndUpdate(req.params.id, req.body);
                 res.status(200).json({
                     status: "success",
                     data: updateBook,

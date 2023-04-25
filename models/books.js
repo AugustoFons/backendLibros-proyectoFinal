@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const newBook = new Schema ({
+const V2newBook = new Schema ({
     title: {
         type: String
     },
@@ -24,10 +24,13 @@ const newBook = new Schema ({
     },
     url_download: {
         type: String
-    }
+    },
+    comments: [
+        { comment: {type: String} }
+    ]
 
 });
 
-const Books = model('Books', newBook);
+const V2Books = model('V2Books', V2newBook);
 
-module.exports = Books;
+module.exports = V2Books;

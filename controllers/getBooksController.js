@@ -1,13 +1,13 @@
 const axios = require('axios');
-const Books = require('../models/books')
+const V2Books = require('../models/books')
 
 exports.getApi = async (_, res) => {
     try {
         const getBooksApi = await (
             await axios(
-                "http://www.etnassoft.com/api/v1/get/?category=libros_programacion&num_items=100&criteria=most_viewed"
+                "https://ochre-fawn-wrap.cyclic.app/get"
             )
-        ).data.map((e) => Books.create({
+        ).data.map((e) => V2Books.create({
             id: e.id,
             title: e.title,
             author: e.author,
@@ -18,6 +18,7 @@ exports.getApi = async (_, res) => {
             cover: e.cover,
             url_download: e.url_download
         }))
+        console.log(getBooksApi)
         res.status(200).send(getBooksApi);
     } catch (error) {
         res.status(500).send(error);
@@ -27,7 +28,7 @@ exports.getApi = async (_, res) => {
 
 exports.getDb = async (_, res) => {
         try {
-            const items = await Books.find()
+            const items = await V2Books.find()
             res.status(200).send(items)
         } catch (error) {
             res.status(404).send(error)
@@ -35,11 +36,11 @@ exports.getDb = async (_, res) => {
     }
 
 exports.getDbOneBook = async (req, res) => {
-    const item = await Books.findById(req.params.id);
+    const item = await V2Books.findById(req.params.id);
     res.json({item})
 }
 
 exports.searchBook = async (req, res) => {
-    const item = await Books.findOne({title: req.params.title})
+    const item = await V2Books.findOne({title: req.params.title})
     res.json({item})
 }
