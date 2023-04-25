@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/post', postBooksRouter);
-app.use('/postComment', postCommentRouter);
+app.use('/', postCommentRouter);
 app.use('/get', getBooksRouter);
 app.use('/update', updateBookRouter);
 app.use('/delete', deleteBookRouter);

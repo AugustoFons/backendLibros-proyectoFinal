@@ -1,15 +1,40 @@
+'use strict';
 const express = require('express');
 const router = express.Router();
 const V2Books = require('../models/books')
 const postCommentController = require('../controllers/postCommentController');
 
-router.post('/', (req, res) => {
-    let body = req.body;
-    let error;
-    let comments = JSON.parse(req.body.comments);
+router.post('/postcomment', (req, res) => {
+        V2Books.update({_id: req.body._id}, {
+            $push: {
+                'comments': {
+                    comment: req.body.comment
+                }
+            }
+        },
+        function(error) {
+            if (error) {
+                return res.json({
+                    success: false,
+                    msj: 'No se pudo agregar el comentario',
+                    err
+                });
+            } else {
+                return res.json({
+                    success: true,
+                    msj: 'Se agregó correctamente el comentario'
+                });
+            }
+        }
+        )
 
-    comments.forEach(comment => {
-        V2Books.update( {_id: req.body._id }, {
+    /* let body = req.body;
+    let error;
+    let commentsT = JSON.parse(body.comments);
+
+    
+    commentsT.forEach(comment => {
+        V2Books.update({_id: body._id }, {
             $push: {
                 'comments': {
                     comment: comment
@@ -34,7 +59,7 @@ router.post('/', (req, res) => {
             success: true,
             msg: 'Se agrego el comentario'
         })
-    }
+    } */
 })
 
 module.exports = router

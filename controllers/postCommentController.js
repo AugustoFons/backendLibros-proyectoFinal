@@ -1,7 +1,8 @@
+'use strict'
 const V2Books = require('../models/books')
 
 module.exports = {
-    async postComment  (req, res) {
+    async postComment (req, res) {
         let body = req.body;
         let error;
         let comments = JSON.parse(body.comments)
