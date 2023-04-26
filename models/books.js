@@ -27,10 +27,9 @@ const V2newBook = new Schema ({
     url_download: {
         type: String
     },
-    comments: [
-        { comment: {type: String} }
-    ]
-
+    comments: {
+        type: Array
+    }, 
 });
 
 const V2Books = model('V2Books', V2newBook);

@@ -1,65 +1,26 @@
-'use strict';
 const express = require('express');
 const router = express.Router();
 const V2Books = require('../models/books')
-const postCommentController = require('../controllers/postCommentController');
 
-router.post('/postcomment', (req, res) => {
-        V2Books.update({_id: req.body._id}, {
-            $push: {
-                'comments': {
-                    comment: req.body.comment
-                }
-            }
+
+router.put('/postcomment/:id', async (req, res) => {
+    const arrayId = req.params.arrayId;
+
+    const comentarios = await V2Books.findOneAndUpdate(
+        {
+            "req.body._id": arrayId,
         },
-        function(error) {
-            if (error) {
-                return res.json({
-                    success: false,
-                    msj: 'No se pudo agregar el comentario',
-                    err
-                });
-            } else {
-                return res.json({
-                    success: true,
-                    msj: 'Se agregó correctamente el comentario'
-                });
-            }
-        }
-        )
-
-    /* let body = req.body;
-    let error;
-    let commentsT = JSON.parse(body.comments);
-
-    
-    commentsT.forEach(comment => {
-        V2Books.update({_id: body._id }, {
-            $push: {
-                'comments': {
-                    comment: comment
-                }
-            }
+        {
+        $push: {
+            "comments": req.body.comments,
         },
-        (error) => {
-            if(error){
-                error = error
-            }
         }
-        )
-    });
-    if(error){
-        return res.json({
-            success: false,
-            msg: 'No se pudo agregar el comentario',
-            error
-        })
-    } else {
-        return res.json({
-            success: true,
-            msg: 'Se agrego el comentario'
-        })
-    } */
-})
+        );
+        if (comentarios) {
+            res.send("Successful");
+        } else {
+            res.status(500).send("Not successful");
+        }
+});
 
 module.exports = router

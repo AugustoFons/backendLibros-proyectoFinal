@@ -5,7 +5,7 @@ exports.getApi = async (_, res) => {
     try {
         const getBooksApi = await (
             await axios(
-                "https://ochre-fawn-wrap.cyclic.app/get"
+                "http://localhost:3000/get"
             )
         ).data.map((e) => V2Books.create({
             id: e.id,
