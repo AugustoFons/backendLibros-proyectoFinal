@@ -1,37 +1,20 @@
-'use strict'
 const V2Books = require('../models/books')
 
 module.exports = {
-    postComment (req, res) {
-        let body = req.body;
-        let error;
-        let commentsT = JSON.parse(body.comments);
-
-    
-    commentsT.forEach(comment => {
-        V2Books.findOneAndUpdate({_id: body._id }, {
-            $push: {
-                comments: {
-                    'comment': comment
-                }
+    async postComment (req, res) {
+        try {
+            if (req.params.id) {
+                let updateBook = await V2Books.findByIdAndUpdate(req.params.id, {$push: {
+                    "comments": req.body.comments,
+                }});
+                res.status(200).json({
+                    status: "success",
+                })
+            } else {
+                res.json(err)
             }
+        } catch (error) {
+            res.status(404).send(error);
         }
-        )
-    });
-    if(error){
-        return res.json({
-            success: false,
-            msg: 'No se pudo agregar el comentario',
-            error
-        })
-    } else {
-        return res.json({
-            success: true,
-            msg: 'Se agrego el comentario'
-        })
-    }
-
-
-        
     }
 }
