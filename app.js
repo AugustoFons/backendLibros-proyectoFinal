@@ -24,4 +24,19 @@ app.use('/delete', deleteBookRouter);
 
 connect();
 
+//mensaje inicial
+app.get('/', (req, res) => {
+    const urls = {
+    getBooks: '/get',
+    postBooks: '/post',
+    postComments: '/postcomment',
+    updateBook: '/update',
+    deleteBook: '/delete',
+    };
+    res.json({
+    saludo: 'Bienvenido a la API de LibrosP!',
+    rutas: urls,
+    });
+});
+
 module.exports = app;
