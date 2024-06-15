@@ -9,9 +9,9 @@
 
 " Para este proyecto desarrolle un modelo que recibe la informacion de libros de programacion de la api de OpenLibra y los guarda en mi base de datos de MongoDB. Conjuntamente desarrolle un Frontend que muestra cada uno de los libros y tambien mediante formularios estos se pueden editar o agregar nuevos libros "
 
-## Deploy del frontend en vercel: https://frontend-proyecto-final-chi.vercel.app/
+## Deploy del frontend en vercel: https://frontend-proyecto-final-chi.vercel.app
 
 
-## Deploy del backend en railway: https://backend-proyectofinal-production.up.railway.app/get
+## Deploy del backend en railway: https://backend-libros-proyecto-final.vercel.app
 
 ## Repositorio del frontend: https://github.com/AugustoFons/frontend-proyectoFinal
